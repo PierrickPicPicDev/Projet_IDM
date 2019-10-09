@@ -3,10 +3,15 @@ grammar org.xtext.projet_idm.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 generate myDsl "http://www.xtext.org/projet_idm/mydsl/MyDsl"
 
 MachineLearingGenerator:
+	operations += Operation*
+;
+
+Operation :
 	CSVFile
 	l2+=SplitSet
 	l3+=Predict
-	l4+=Show?;
+	l4+=Show?
+;
 
 CSVFile:
 	'readCSV' file=STRING;

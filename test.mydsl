@@ -1,0 +1,28 @@
+readCSV "ini.csv" //choix du fichier
+split "variety" 0.2 train_test  //choix du modele appliqué : train_test avec un split sur la colonne "colonne" avec une taille de 20% pour l'ensemble de test
+predict ClassificationTree     //choix de l'algo 
+show                          //mot clé show pour montrer les resultats
+//RESULTAT : 0.9333333333333333
+
+readCSV "ini.csv"
+split "colonne" 0.2 cross_validation
+predict ClassificationTree
+show
+
+readCSV "ini.csv"
+split "variety" 0.2 train_test
+predict J48
+show
+
+readCSV "ini.csv"
+split "colonne" 0.2 train_test
+predict NaiveBayes
+show
+
+readCSV "ini.csv"
+split "colonne" 0.2 train_test
+predict SVM
+show
+
+//Pour split et predict, nous avions opte dans un premier temps pour un parametre string pour le choix du modele et de l'algo
+//Nous avons finalement choisi de creer des Enum contenant les choix possible ce qui evite que l'utilisateur entre un nom qui n'existe pas
