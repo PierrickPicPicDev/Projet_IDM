@@ -1,0 +1,30 @@
+grammar org.xtext.projet_idm.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/projet_idm/mydsl/MyDsl"
+
+MachineLearingGenerator:
+	CSVFile
+	l2+=SplitSet
+	l3+=Predict
+	l4+=Show?;
+
+CSVFile:
+	'readCSV' file=STRING;
+
+SplitSet:
+	'split' var=STRING size=DOUBLE strat=STRAT;
+
+Predict:
+	'predict' algo=ALGO;
+
+Show:
+	'show';
+
+enum ALGO:
+	J48 | NaiveBayes | ClassificationTree | SVM;
+
+enum STRAT:
+	train_test | cross_validation;
+
+terminal DOUBLE:
+	INT '.' INT;
